@@ -1,19 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using  UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
     public static GameController instance = null;
 
     public GameObject firstGameObject, secondGameObject;
-    private bool firstClick, secondClick, actOnce;
+    public Text WarnigComents;
 
     void Start()
     {
         if (instance == null)
                  instance = this;
+
+        WarnigComents.text = "";
     }
 
     // Update is called once per frame
@@ -26,8 +26,6 @@ public class GameController : MonoBehaviour
             return;
         }else if (firstGameObject == secondGameObject)
         {
-            //firstGameObject.transform.GetComponent<SpriteRenderer>().color = Color.white;
-            //secondGameObject.transform.GetComponent<SpriteRenderer>().color = Color.white;
             firstGameObject = null;
             secondGameObject = null;
             return;
@@ -52,6 +50,24 @@ public class GameController : MonoBehaviour
                 firstGameObject = null;
                 secondGameObject = null;
         }
+    }
 
+    public void WarningComment(string typeOfComment){
+
+        switch (typeOfComment)
+        {
+            case "FullGlass":
+                 WarnigComents.text = "NO PUEDES VERTIR LIQUIDO EN UN RECIPINTE QUE YA ESTA LLENO";
+            break;
+
+            case "EmtyGlass":
+                 WarnigComents.text = "EL RECIPIENTE ESTA VACIO, NO PUEDES VERTIR NADA DE EL";
+            break;
+
+            case "CompleteGlass":
+                 WarnigComents.text = "MUY BIEN. HAZ COMPLETADO UNA POSION";
+            break;
+        }
+       
     }
 }

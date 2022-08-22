@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Container : MonoBehaviour
@@ -15,10 +13,9 @@ public class Container : MonoBehaviour
         liquidLevelCounter = 0;
         for (int i = 0; i < liquidColor.Length; i++)
         {
-           if (liquidColor[i].color != empyColr){
-                 liquidLevel(true);
-           }
-           CheckLevel();
+           if (liquidColor[i].color != empyColr)liquidLevel(true);
+                 
+           if (liquidLevelCounter == 0) emptyGlass = true;
         }
     }
 
@@ -31,6 +28,7 @@ public class Container : MonoBehaviour
         {
             emptyGlass = false;
             liquidLevel(true);
+            CheckLevel();
             liquidColor[liquidLevelCounter-1].color = saveLiquid;
 
             if (liquidLevelCounter == liquidColor.Length)
@@ -47,6 +45,7 @@ public class Container : MonoBehaviour
         Color vertLiquid = liquidColor[liquidLevelCounter-1].color;
         fullGlass=false;
         liquidLevel(false);
+        CheckLevel();
         return vertLiquid;
     }
     
@@ -59,9 +58,7 @@ public class Container : MonoBehaviour
              liquidColor[liquidLevelCounter-1].color = Color.white;
                 liquidLevelCounter --;
             
-        }  liquidLevelCounter.ToString();
-
-        CheckLevel();
+        }  
     }
 
     private void CheckLevel() {
@@ -69,10 +66,12 @@ public class Container : MonoBehaviour
         if (liquidLevelCounter == liquidColor.Length)
             {
                 fullGlass = true;
+                GameController.instance.WarningComment("FullGlass");
                 CheckColors();
             }
         if (liquidLevelCounter == 0)
         {
+            GameController.instance.WarningComment("FullGlass");
             emptyGlass = true;
         }
     }
@@ -93,8 +92,7 @@ public class Container : MonoBehaviour
         {
             potionCompleted = true;
             transform.GetComponent<SpriteRenderer>().color = Color.green;
-        }
-            
+        } 
     }
 
     private void OnMouseDown() {
