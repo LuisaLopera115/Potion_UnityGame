@@ -4,30 +4,30 @@ using UnityEngine;
 
 public class Drageable : MonoBehaviour
 {
-    private bool drag;
-    private Vector2 offset;
-    private Vector2 initPos;
+    public bool firstClick, SecondClick;
     
-    private void Awake() {
-        initPos = transform.position;
-    }
     
     void Update(){
 
         
     }
+
     private void OnMouseDown() {
-    }
-    private   void OnMouseUp() {
-    }
 
-    void GetmousePos(){
-    }
+        if(GameController.instance.firstGameObject == null){
+            GameController.instance.firstGameObject = transform.gameObject;
+            transform.GetComponent<SpriteRenderer>().color = Color.grey;
 
+        }else if (GameController.instance.secondGameObject == null){
+            GameController.instance.secondGameObject = transform.gameObject;
+            transform.GetComponent<SpriteRenderer>().color = Color.cyan;
+        }
+    }
+    
     private void OnCollisionEnter2D(Collision2D other) 
     {
         //Debug.Log("entra al condicional");
-        if (drag && !Vector2.Equals(transform.position, initPos))
+        if (true)
         {
             if (other.gameObject.tag == "Glass")
             {
