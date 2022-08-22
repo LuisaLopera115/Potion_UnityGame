@@ -14,25 +14,14 @@ public class Drageable : MonoBehaviour
     
     void Update(){
 
-        if (drag)
-        {
-            Vector2 mousePos = GetmousePos();
-            transform.position= mousePos - offset;   
-        }
+        
     }
     private void OnMouseDown() {
-        drag = true;
-        //Debug.Log("mouse pressed");
-        offset = GetmousePos() - (Vector2)transform.position;
     }
     private   void OnMouseUp() {
-        // sound manager for skip glass position 
-        transform.position=initPos;
-        drag = false;
     }
 
-    Vector2 GetmousePos(){
-        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    void GetmousePos(){
     }
 
     private void OnCollisionEnter2D(Collision2D other) 
