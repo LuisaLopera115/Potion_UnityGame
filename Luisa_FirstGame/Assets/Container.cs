@@ -18,12 +18,8 @@ public class Container : MonoBehaviour
            if (liquidColor[i].color != empyColr){
                  liquidLevel(true);
            }
+           CheckLevel();
         }
-    }
-
-    void Update()
-    {
-        
     }
 
     public void SafeLiquid(Color saveLiquid){
@@ -55,6 +51,7 @@ public class Container : MonoBehaviour
     }
     
     public void liquidLevel(bool LessMore){
+
         if(LessMore){
             liquidLevelCounter ++;
         }
@@ -62,21 +59,22 @@ public class Container : MonoBehaviour
              liquidColor[liquidLevelCounter-1].color = Color.white;
                 liquidLevelCounter --;
             
-        }
+        }  liquidLevelCounter.ToString();
+
+        CheckLevel();
+    }
+
+    private void CheckLevel() {
+        
         if (liquidLevelCounter == liquidColor.Length)
             {
-                //Debug.Log(transform.gameObject.name +"  THIS GLASS IS full");
                 fullGlass = true;
                 CheckColors();
             }
         if (liquidLevelCounter == 0)
         {
-            //Debug.Log(transform.gameObject.name +"  THIS GLASS IS EMPTY");
             emptyGlass = true;
         }
-
-        // Debug.Log("the liquid level of " + transform.gameObject.name + " is "+
-        //     liquidLevelCounter.ToString());
     }
 
     private void CheckColors()
