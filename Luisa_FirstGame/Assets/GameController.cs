@@ -8,7 +8,8 @@ public class GameController : MonoBehaviour
     public static GameController instance = null;
 
     public GameObject firstGameObject, secondGameObject;
-    private bool firstClick, secondClick;
+    private bool firstClick, secondClick, actOnce;
+
     void Start()
     {
         if (instance == null)
@@ -20,25 +21,36 @@ public class GameController : MonoBehaviour
     {
         if(firstGameObject == null && secondGameObject == null){
             return;
-        }
-        if (firstGameObject == secondGameObject)
+
+        }else if(firstGameObject != null && secondGameObject == null){
+            return;
+        }else if (firstGameObject == secondGameObject)
         {
+            //firstGameObject.transform.GetComponent<SpriteRenderer>().color = Color.white;
+            //secondGameObject.transform.GetComponent<SpriteRenderer>().color = Color.white;
             firstGameObject = null;
             secondGameObject = null;
+            return;
+
         }else{
 
             // ACTIVE MOVE ANIMATION
-            if( other.transform.GetComponent<Container>().fullGlass || 
-                    transform.GetComponent<Container>().emptyGlass || 
-                    transform.GetComponent<Container>().potionCompleted
+            if(secondGameObject.transform.GetComponent<Container>().fullGlass || 
+                    firstGameObject.transform.GetComponent<Container>().emptyGlass || 
+                    firstGameObject.transform.GetComponent<Container>().potionCompleted 
                 ){
+                    firstGameObject = null;
+                    secondGameObject = null;
                     return;
                 }
 
-               //Debug.Log("vert liquid in the glass " + other.gameObject.name);
-                other.transform.GetComponent<Container>().SafeLiquid(
-                    transform.GetComponent<Container>().UnSafeLiquid());
-                //transform.GetComponent<Container>().UnSafeLiquid();
+               Debug.Log("vert liquid in the glass " + secondGameObject.gameObject.name);
+
+                secondGameObject.transform.GetComponent<Container>().SafeLiquid(
+                    firstGameObject.transform.GetComponent<Container>().UnSafeLiquid());
+
+                firstGameObject = null;
+                secondGameObject = null;
         }
 
     }

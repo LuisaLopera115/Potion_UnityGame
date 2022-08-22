@@ -28,6 +28,9 @@ public class Container : MonoBehaviour
 
     public void SafeLiquid(Color saveLiquid){
 
+        Debug.Log("nivelliquido del que guarda " + liquidLevelCounter.ToString() 
+        + " " +  liquidColor.Length.ToString());
+
         if (liquidColor[liquidLevelCounter].color == Color.white)
         {
             emptyGlass = false;
@@ -36,7 +39,7 @@ public class Container : MonoBehaviour
 
             if (liquidLevelCounter == liquidColor.Length)
             {
-                //Debug.Log(transform.gameObject.name +"  THIS GLASS IS FULL");
+                Debug.Log(transform.gameObject.name +"  THIS GLASS IS FULL");
                 fullGlass = true;
                 CheckColors();
             }
@@ -60,7 +63,12 @@ public class Container : MonoBehaviour
                 liquidLevelCounter --;
             
         }
-        
+        if (liquidLevelCounter == liquidColor.Length)
+            {
+                //Debug.Log(transform.gameObject.name +"  THIS GLASS IS full");
+                fullGlass = true;
+                CheckColors();
+            }
         if (liquidLevelCounter == 0)
         {
             //Debug.Log(transform.gameObject.name +"  THIS GLASS IS EMPTY");
@@ -79,7 +87,7 @@ public class Container : MonoBehaviour
             //Debug.Log(liquidColor[i].color);
             if (liquidColor[0].color == liquidColor[i].color){
                 Counter++;
-                Debug.Log("COUNTER "+ Counter.ToString()); 
+                //Debug.Log("COUNTER "+ Counter.ToString()); 
             }
         }
             //Debug.Log(Counter.ToString() + liquidColor.Length.ToString());  
@@ -89,5 +97,15 @@ public class Container : MonoBehaviour
             transform.GetComponent<SpriteRenderer>().color = Color.green;
         }
             
+    }
+
+    private void OnMouseDown() {
+
+        if(GameController.instance.firstGameObject == null){
+            GameController.instance.firstGameObject = transform.gameObject;
+
+        }else if (GameController.instance.secondGameObject == null){
+            GameController.instance.secondGameObject = transform.gameObject;
+        }
     }
 }
