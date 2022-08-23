@@ -26,7 +26,6 @@ public class GameController : MonoBehaviour
         if (WarnigComents.enabled && (Time.time >= timeWhenDisappearComments))
         {
             WarnigComents.enabled = false;
-            Debug.Log("SE ELIMINA EL MENSAJE");
         }
 
         if(firstGameObject == null && secondGameObject == null){
@@ -71,7 +70,6 @@ public class GameController : MonoBehaviour
     //Call to enable the text, which also sets the timer
     public void EnableText()
     {
-        Debug.Log("SE ACTIVA EL MENSAJE");
         WarnigComents.enabled = true;
         timeWhenDisappearComments = Time.time + timeToAppearComments;
     }
