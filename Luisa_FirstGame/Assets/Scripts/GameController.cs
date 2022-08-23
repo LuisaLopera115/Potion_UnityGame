@@ -95,6 +95,5 @@ public class GameController : MonoBehaviour
             default: 
             break;
         }
-       
     }
 }
