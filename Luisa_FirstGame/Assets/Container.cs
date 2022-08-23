@@ -21,9 +21,6 @@ public class Container : MonoBehaviour
 
     public void SafeLiquid(Color saveLiquid){
 
-        Debug.Log("nivelliquido del que guarda " + liquidLevelCounter.ToString() 
-        + " " +  liquidColor.Length.ToString());
-
         if (liquidColor[liquidLevelCounter].color == Color.white)
         {
             emptyGlass = false;
@@ -33,7 +30,7 @@ public class Container : MonoBehaviour
 
             if (liquidLevelCounter == liquidColor.Length)
             {
-                Debug.Log(transform.gameObject.name +"  THIS GLASS IS FULL");
+                //Debug.Log(transform.gameObject.name +"  THIS GLASS IS FULL");
                 fullGlass = true;
                 CheckColors();
             }
@@ -66,12 +63,10 @@ public class Container : MonoBehaviour
         if (liquidLevelCounter == liquidColor.Length)
             {
                 fullGlass = true;
-                GameController.instance.WarningComment("FullGlass");
                 CheckColors();
             }
         if (liquidLevelCounter == 0)
         {
-            GameController.instance.WarningComment("FullGlass");
             emptyGlass = true;
         }
     }

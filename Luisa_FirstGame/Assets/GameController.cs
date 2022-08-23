@@ -8,17 +8,27 @@ public class GameController : MonoBehaviour
     public GameObject firstGameObject, secondGameObject;
     public Text WarnigComents;
 
+    private float timeToAppearComments = 1f;
+    private float timeWhenDisappearComments;
+
     void Start()
     {
         if (instance == null)
                  instance = this;
 
         WarnigComents.text = "";
+        ResetFirstSecondObject();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (WarnigComents.enabled && (Time.time >= timeWhenDisappearComments))
+        {
+            WarnigComents.enabled = false;
+            Debug.Log("SE ELIMINA EL MENSAJE");
+        }
+
         if(firstGameObject == null && secondGameObject == null){
             return;
 
@@ -26,33 +36,49 @@ public class GameController : MonoBehaviour
             return;
         }else if (firstGameObject == secondGameObject)
         {
-            firstGameObject = null;
-            secondGameObject = null;
+            ResetFirstSecondObject();
             return;
 
         }else{
-
             // ACTIVE MOVE ANIMATION
-            if(secondGameObject.transform.GetComponent<Container>().fullGlass || 
-                    firstGameObject.transform.GetComponent<Container>().emptyGlass || 
-                    firstGameObject.transform.GetComponent<Container>().potionCompleted 
-                ){
-                    firstGameObject = null;
-                    secondGameObject = null;
-                    return;
-                }
+            if(secondGameObject.transform.GetComponent<Container>().fullGlass){
+                WarningComment("FullGlass");
+                ResetFirstSecondObject();
+                return;
+            }else if(firstGameObject.transform.GetComponent<Container>().emptyGlass){
+                WarningComment("EmtyGlass");
+                ResetFirstSecondObject();
+                return;
+            }else if (firstGameObject.transform.GetComponent<Container>().potionCompleted ){
+                WarningComment("CompleteGlass");
+                ResetFirstSecondObject();
+                return;
+            }
 
-               Debug.Log("vert liquid in the glass " + secondGameObject.gameObject.name);
+               //Debug.Log("vert liquid in the glass " + secondGameObject.gameObject.name);
 
                 secondGameObject.transform.GetComponent<Container>().SafeLiquid(
                     firstGameObject.transform.GetComponent<Container>().UnSafeLiquid());
 
-                firstGameObject = null;
-                secondGameObject = null;
+                ResetFirstSecondObject();
         }
+    }
+    
+    private void ResetFirstSecondObject(){
+        firstGameObject = null;
+        secondGameObject = null;
+    }
+    //Call to enable the text, which also sets the timer
+    public void EnableText()
+    {
+        Debug.Log("SE ACTIVA EL MENSAJE");
+        WarnigComents.enabled = true;
+        timeWhenDisappearComments = Time.time + timeToAppearComments;
     }
 
     public void WarningComment(string typeOfComment){
+
+        EnableText();
 
         switch (typeOfComment)
         {
@@ -66,6 +92,9 @@ public class GameController : MonoBehaviour
 
             case "CompleteGlass":
                  WarnigComents.text = "MUY BIEN. HAZ COMPLETADO UNA POSION";
+            break;
+
+            default: 
             break;
         }
        
