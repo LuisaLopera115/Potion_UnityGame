@@ -3,7 +3,7 @@ using UnityEngine;
 public class Container : MonoBehaviour
 {
     //public Container DeleteLiquidGlassSelected;
-    public SpriteRenderer[] liquidColor  = new SpriteRenderer[3];
+    public SpriteRenderer[] liquidColor  = new SpriteRenderer[6];
     private Color empyColr = Color.white;
     private int liquidLevelCounter;
     public bool fullGlass, emptyGlass, potionCompleted;

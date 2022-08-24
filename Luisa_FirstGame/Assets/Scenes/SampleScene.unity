@@ -212,6 +212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 317624661}
   - component: {fileID: 317624660}
+  - component: {fileID: 317624662}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -249,6 +250,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &317624662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317624659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96d0771e2feb2be4d88a63dcd84ab04e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentLocation: {fileID: 1563300792}
+  glass: {fileID: 123774995}
+  glassCant: 7
+  liquidStyles:
+  - {r: 1, g: 0, b: 0.37234402, a: 1}
+  - {r: 0, g: 1, b: 0.95151806, a: 3.8491507e+9}
+  - {r: 0.7490196, g: 0, b: 0.7490196, a: 1}
+  - {r: 0.6820841, g: 0, b: 1, a: 0.99215686}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -446,7 +467,7 @@ GameObject:
   - component: {fileID: 1563300794}
   - component: {fileID: 1563300793}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Glass Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
