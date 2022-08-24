@@ -3,14 +3,22 @@ using UnityEngine;
 public class Container : MonoBehaviour
 {
     //public Container DeleteLiquidGlassSelected;
-    public SpriteRenderer[] liquidColor  = new SpriteRenderer[6];
+    public SpriteRenderer[] liquidColor;
     private Color empyColr = Color.white;
     private int liquidLevelCounter;
     public bool fullGlass, emptyGlass, potionCompleted;
-    
+    private int liquidCantThisGalss;
+
     void Start()
     {
+        liquidCantThisGalss = GetComponentsInChildren<Transform>().Length -1;
+        liquidColor = new SpriteRenderer[liquidCantThisGalss];
+        for (int i = 0; i < liquidColor.Length; i++)
+            liquidColor[i]=transform.GetComponentsInChildren<SpriteRenderer>()[liquidColor.Length-i];
+        
+
         liquidLevelCounter = 0;
+
         for (int i = 0; i < liquidColor.Length; i++)
         {
            if (liquidColor[i].color != empyColr)liquidLevel(true);
@@ -54,7 +62,6 @@ public class Container : MonoBehaviour
         else{
              liquidColor[liquidLevelCounter-1].color = Color.white;
                 liquidLevelCounter --;
-            
         }  
     }
 
