@@ -100,7 +100,6 @@ public class Container : MonoBehaviour
         {
             potionCompleted = true;
             transform.GetComponent<SpriteRenderer>().color = Color.green;
-            Debug.Log("COMPLETASTE UN FRASCO");
             GlassCreator.instance.CompletedGlases(transform.gameObject);
 
         } 

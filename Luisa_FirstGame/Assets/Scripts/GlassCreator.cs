@@ -6,47 +6,30 @@ public class GlassCreator : MonoBehaviour
 {
     public static GlassCreator instance;
 
+    GameObject[] liquids;
+    GameObject[] Galsses;
+
     [SerializeField]
     private Transform parentLocation;
     [SerializeField]
     private GameObject glass;
-
-
-    GameObject[] liquids;
-    GameObject[] Galsses;
-
-
-    [SerializeField]
     private int glassCant;
     [SerializeField]
     private Color[] liquidStyles;
     private List<Color> liquiToAsign;
-    private int counter, glasscompleteCounter;
+
+    private int counter, glasscompleteCounter, currentLevel;
 
     // Start is called before the first frame update
     private void Awake() 
     {
-        
         if(instance == null)
         {
             instance = this;
         }
-        
 
-        glasscompleteCounter = 0;
-        counter = 0;
-        liquiToAsign = new List<Color>();
-
-        for (int i = 0; i < glassCant; i++)
-        {
-            GameObject _glass = Instantiate(glass);
-            _glass.name = "Glass_" + i;
-            _glass.transform.SetParent(parentLocation, false);
-        }
-        liquids = GameObject.FindGameObjectsWithTag("Liquid");
-        Galsses = GameObject.FindGameObjectsWithTag("Glass");
-
-        GetLiquidInGlasses();
+        currentLevel = 1;
+        StartGame();
     }
 
     public void GetLiquidInGlasses(){
@@ -77,11 +60,41 @@ public class GlassCreator : MonoBehaviour
     }
 
     public void CompletedGlases(GameObject Glass){
-        Debug.Log("MELOOOO");
         glasscompleteCounter++;
         if (glasscompleteCounter == glassCant)
         {
-            Debug.Log("nivel completado");
+            currentLevel += 5;
+            StartGame();
         }
+    }
+
+    public void StartGame(){
+        
+        CheckGameLevel();
+
+        glasscompleteCounter = 0;
+        counter = 0;
+        liquiToAsign = new List<Color>();
+
+        for (int i = 0; i < glassCant; i++)
+        {
+            GameObject _glass = Instantiate(glass);
+            _glass.name = "Glass_" + i;
+            _glass.transform.SetParent(parentLocation, false);
+        }
+        liquids = GameObject.FindGameObjectsWithTag("Liquid");
+        Galsses = GameObject.FindGameObjectsWithTag("Glass");
+
+        GetLiquidInGlasses();
+    }
+
+    public void CheckGameLevel(){
+        if (currentLevel<=5){glassCant = 5; Debug.Log("estas en un nivel inferior a 5");}
+        if (currentLevel>5)glassCant = 10;
+        if (currentLevel>10)glassCant = 7;
+        if (currentLevel>20)glassCant = 8;
+        if (currentLevel>30)glassCant = 9;
+        if (currentLevel>40)glassCant = 10;
+        if (currentLevel>50)glassCant = 11;
     }
 }
