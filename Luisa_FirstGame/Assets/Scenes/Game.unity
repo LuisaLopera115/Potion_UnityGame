@@ -198,7 +198,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 317624661}
-  - component: {fileID: 317624663}
   - component: {fileID: 317624660}
   - component: {fileID: 317624662}
   m_Layer: 0
@@ -252,7 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentLocation: {fileID: 1563300792}
   glass: {fileID: 1600351124}
-  glassCant: 5
+  glassCant: 3
   liquidStyles:
   - {r: 1, g: 0, b: 0.37234402, a: 1}
   - {r: 0, g: 1, b: 0.95151806, a: 3.8491507e+9}
@@ -260,19 +259,6 @@ MonoBehaviour:
   - {r: 0.16824007, g: 1, b: 0, a: 0.99215686}
   - {r: 0, g: 0.07026148, b: 1, a: 0.99215686}
   - {r: 0.8741627, g: 0, b: 1, a: 0.99215686}
---- !u!114 &317624663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 317624659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2744f598680960344b7fe0be4bf7a2c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  avaibleColorsList: []
 --- !u!224 &509891851 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4516498071362803873, guid: 2706dc21a468b3949bc6cb37edc032e6, type: 3}

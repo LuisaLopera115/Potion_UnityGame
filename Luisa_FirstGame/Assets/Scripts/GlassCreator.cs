@@ -4,21 +4,36 @@ using UnityEngine;
 
 public class GlassCreator : MonoBehaviour
 {
+    public static GlassCreator instance;
+
     [SerializeField]
     private Transform parentLocation;
     [SerializeField]
     private GameObject glass;
+
+
+    GameObject[] liquids;
+    GameObject[] Galsses;
+
 
     [SerializeField]
     private int glassCant;
     [SerializeField]
     private Color[] liquidStyles;
     private List<Color> liquiToAsign;
-    private int counter;
+    private int counter, glasscompleteCounter;
 
     // Start is called before the first frame update
     private void Awake() 
     {
+        
+        if(instance == null)
+        {
+            instance = this;
+        }
+        
+
+        glasscompleteCounter = 0;
         counter = 0;
         liquiToAsign = new List<Color>();
 
@@ -28,14 +43,16 @@ public class GlassCreator : MonoBehaviour
             _glass.name = "Glass_" + i;
             _glass.transform.SetParent(parentLocation, false);
         }
+        liquids = GameObject.FindGameObjectsWithTag("Liquid");
+        Galsses = GameObject.FindGameObjectsWithTag("Glass");
 
         GetLiquidInGlasses();
     }
 
     public void GetLiquidInGlasses(){
 
-        GameObject[] liquids = GameObject.FindGameObjectsWithTag("Liquid");
-        GameObject[] Galsses = GameObject.FindGameObjectsWithTag("Glass");
+        liquids = GameObject.FindGameObjectsWithTag("Liquid");
+        Galsses = GameObject.FindGameObjectsWithTag("Glass");
 
        
         for (int i = 0; i < glassCant; i++)
@@ -58,8 +75,13 @@ public class GlassCreator : MonoBehaviour
            liquids[i].GetComponent<SpriteRenderer>().color = liquiToAsign[i];
         }
     }
-    void Update()
-    {
-        
+
+    public void CompletedGlases(GameObject Glass){
+        Debug.Log("MELOOOO");
+        glasscompleteCounter++;
+        if (glasscompleteCounter == glassCant)
+        {
+            Debug.Log("nivel completado");
+        }
     }
 }

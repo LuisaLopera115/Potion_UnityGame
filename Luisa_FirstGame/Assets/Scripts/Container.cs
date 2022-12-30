@@ -7,10 +7,14 @@ public class Container : MonoBehaviour
     private Color empyColr = Color.white;
     private int liquidLevelCounter;
     public bool fullGlass, emptyGlass, potionCompleted;
-    private int liquidCantThisGalss;
+    private int liquidCantThisGalss;    
+    GlassCreator LevelManager;
+
+    public int glassesComplete;
 
     void Start()
     {
+        glassesComplete = 0;
         liquidCantThisGalss = GetComponentsInChildren<Transform>().Length -1;
         liquidColor = new SpriteRenderer[liquidCantThisGalss];
         for (int i = 0; i < liquidColor.Length; i++)
@@ -96,6 +100,9 @@ public class Container : MonoBehaviour
         {
             potionCompleted = true;
             transform.GetComponent<SpriteRenderer>().color = Color.green;
+            Debug.Log("COMPLETASTE UN FRASCO");
+            GlassCreator.instance.CompletedGlases(transform.gameObject);
+
         } 
     }
 
