@@ -52,14 +52,28 @@ public class GameController : MonoBehaviour
                 WarningComment("CompleteGlass");
                 ResetFirstSecondObject();
                 return;
-            }
-
-               //Debug.Log("vert liquid in the glass " + secondGameObject.gameObject.name);
-
-                secondGameObject.transform.GetComponent<Container>().SafeLiquid(
+            }   
+                if (secondGameObject.transform.GetComponent<Container>().emptyGlass)
+                {
+                    secondGameObject.transform.GetComponent<Container>().SafeLiquid(
                     firstGameObject.transform.GetComponent<Container>().UnSafeLiquid());
 
-                ResetFirstSecondObject();
+                    ResetFirstSecondObject();
+                    return;
+                }
+
+               //Debug.Log("vert liquid in the glass " + secondGameObject.gameObject.name);
+                if (firstGameObject.transform.GetComponent<Container>().LastLiquidColor() == secondGameObject.transform.GetComponent<Container>().LastLiquidColor())
+                {
+                    secondGameObject.transform.GetComponent<Container>().SafeLiquid(
+                    firstGameObject.transform.GetComponent<Container>().UnSafeLiquid());
+
+                    ResetFirstSecondObject();
+                }else{
+                    WarningComment("NotSameColor");
+                    ResetFirstSecondObject();
+                }
+                
         }
     }
     
@@ -90,6 +104,10 @@ public class GameController : MonoBehaviour
 
             case "CompleteGlass":
                  WarnigComents.text = "MUY BIEN. HAZ COMPLETADO UNA POSION";
+            break;
+
+            case "NotSameColor":
+                 WarnigComents.text = "deben tener el mismo color";
             break;
 
             default: 

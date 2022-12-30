@@ -38,7 +38,6 @@ public class GlassCreator : MonoBehaviour
         GameObject[] Galsses = GameObject.FindGameObjectsWithTag("Glass");
 
        
-        Debug.Log("HAY ESTA CANTIDAD DE LIQUIDOS POR ENVASE " + Galsses.Length.ToString());
         for (int i = 0; i < glassCant; i++)
         {
             for (int j = 0; j < glass.GetComponentsInChildren<Transform>().Length - 1; j++) liquiToAsign.Add(liquidStyles[counter]);

@@ -53,7 +53,9 @@ public class Container : MonoBehaviour
         CheckLevel();
         return vertLiquid;
     }
-    
+    public Color LastLiquidColor( ){
+        return liquidColor[liquidLevelCounter-1].color;
+    }
     public void liquidLevel(bool LessMore){
 
         if(LessMore){
