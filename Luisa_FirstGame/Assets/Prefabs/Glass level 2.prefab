@@ -111,7 +111,7 @@ RectTransform:
   m_GameObject: {fileID: 1195026494158158560}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -3178.8005}
-  m_LocalScale: {x: 127.21558, y: 146.93625, z: 105.96001}
+  m_LocalScale: {x: 150, y: 150, z: 150}
   m_Children:
   - {fileID: 1195026494304799408}
   - {fileID: 1195026494308303634}
@@ -198,6 +198,7 @@ MonoBehaviour:
   fullGlass: 0
   emptyGlass: 0
   potionCompleted: 0
+  glassesComplete: 0
 --- !u!50 &1195026494158158566
 Rigidbody2D:
   serializedVersion: 4
